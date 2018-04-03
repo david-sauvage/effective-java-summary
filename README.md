@@ -171,3 +171,21 @@ static void copy(String src, String dst) throws IOException {
 	}
 }
 ```
+
+## Methods of the Object class
+
+__Item 10 : Equals__
+
+Equals needs to be overriden  when the class has a notion of logical equality.
+This is generally the case for value classes
+
+The equals method must be :
+ - Reflexive (x = x)
+ - Symmetric (x = y => y = x)
+ - Transitive (x = y and y = z => x = z)
+ - Consistent
+ - For non null x, x.equals(null) should return false
+ 
+Not respecting those rules will have impact on the use of List, Set or Map.
+
+
