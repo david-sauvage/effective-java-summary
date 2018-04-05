@@ -174,9 +174,9 @@ static void copy(String src, String dst) throws IOException {
 
 ## Methods of the Object class
 
-__Item 10 : Equals__
+__Item 10 : equals__
 
-Equals needs to be overriden  when the class has a notion of logical equality.
+The equals method needs to be overriden  when the class has a notion of logical equality.
 This is generally the case for value classes
 
 The equals method must be :
@@ -188,4 +188,19 @@ The equals method must be :
  
 Not respecting those rules will have impact on the use of List, Set or Map.
 
+__Item 11 : hashCode__
 
+The hashCode method need to be overriden if the equals method is overriden.
+
+Here is the contract of the hashCode method :
+ - hashCode needs to be consistent
+ - if a.equals(b) is true then a.hashCode() == b.hashCode()
+ - if a.equals(b) is false then a.hashCode() doesn't have to be different of b.hashCode()  
+ 
+If you don't respect this contract, HashMap or HashSet will behave erratically.
+
+__Item 12 : toString__
+
+Override toString in every instantiable class unless a superclass already done it.
+Most of the time it helps when debugging.
+It needs to be a full representation of the object and every information contained in the toString representation should be accessible in some other way in order to avoid programmers to parse the String representation.
