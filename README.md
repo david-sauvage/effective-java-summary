@@ -204,3 +204,36 @@ __Item 12 : toString__
 Override toString in every instantiable class unless a superclass already done it.
 Most of the time it helps when debugging.
 It needs to be a full representation of the object and every information contained in the toString representation should be accessible in some other way in order to avoid programmers to parse the String representation.
+
+__Item 13 : clone__
+
+When you implement Cloneable, you should also override clone with a public method whose return type is the class itself.
+This method should start by calling super.clone and then also clone all the mutable objects of your class.
+
+Also, when you need to provide a way to copy classes, you can think first of copy constructor or copy factory except for arrays.
+
+__Item 14 : Implementing Comparable__
+
+If you have a value class with an obvious natural ordering, you should implement Comparable.
+
+Here is the contract of the compareTo method : 
+ - signum(x.compareTo(y)) == -signum(y.compareTo(x))
+ - x.compareTo(y) > 0 && y.compareTo(z) > 0 => x.compareTo(z) > 0
+ - x.compareTo(y) == 0 => signum(x.compareTo(z)) == signum(y.compareTo(z))
+ 
+It's also recommended that (x.compareTo(y) == 0) == x.equals(y).
+If it's not, it has to be documented that the natural ordering of this class is inconsistent with equals.
+
+When confronted to different types of Object, compareTo can throw ClassCastException.
+
+## Classes and Interfaces
+
+__Item 15 : Accessibility__
+
+Make accessibility as low as possible. Work on a public API that you want to expose and try not to give access to implementation details.
+
+__Item 16 : Accessor methods__
+
+Public classes should never expose its fields. Doing this will prevent you to change its representation in the future.
+Package private or private nested classes, can, on the contrary, expose their fields since it won't be part of the API.
+
