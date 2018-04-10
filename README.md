@@ -237,3 +237,13 @@ __Item 16 : Accessor methods__
 Public classes should never expose its fields. Doing this will prevent you to change its representation in the future.
 Package private or private nested classes, can, on the contrary, expose their fields since it won't be part of the API.
 
+__Item 16 : Immutability__
+
+To create an immutable class : 
+ - Don't provide methods that modify the visible object's state
+ - Ensure that the class can't be extended
+ - Make all fields final
+ - Make all fields private
+ - Don't give access to a reference of a mutable object that is a field of your class
+ 
+As a rule of thumb, try to limit mutability.
