@@ -237,7 +237,7 @@ __Item 16 : Accessor methods__
 Public classes should never expose its fields. Doing this will prevent you to change its representation in the future.
 Package private or private nested classes, can, on the contrary, expose their fields since it won't be part of the API.
 
-__Item 16 : Immutability__
+__Item 17 : Immutability__
 
 To create an immutable class : 
  - Don't provide methods that modify the visible object's state
@@ -247,3 +247,61 @@ To create an immutable class :
  - Don't give access to a reference of a mutable object that is a field of your class
  
 As a rule of thumb, try to limit mutability.
+
+__Item 18 : Favor composition over inheritance__
+
+With inheritance, you don't know how your class will react with a new version of its superclass.
+For example, you may have added a new method whose signature will be the same in the next release of its superclass.
+
+Also, if there is a flaw in the API of the superclass you will suffer from it too.
+With composition, you can define your own API for your class.
+
+As a rule of thumb, to know if you need to choose inheritance over composition, you need to ask yourself if B is really a subtype of A.
+
+Example :
+```java
+// Wrapper class - uses composition in place of inheritance
+public class InstrumentedSet<E> extends ForwardingSet<E> {
+	private int addCount = 0;
+	public InstrumentedSet (Set<E> s){
+		super(s)
+	}
+
+	@Override
+	public boolean add(E e){
+		addCount++;
+		return super.add(e);
+	}
+
+	@Override
+	public boolean addAll (Collection< ? extends E> c){
+		addCount += c.size();
+		return super.addAll(c);
+	}
+
+	public int getAddCount() {
+		return addCount;
+	}
+}
+
+// Reusable forwarding class
+public class ForwardingSet<E> implements Set<E> {
+	private final Set<E> s; // Composition
+	public ForwardingSet(Set<E> s) { this.s = s ; }
+
+	public void clear() {s.clear();}
+	public boolean contains(Object o) { return s.contains(o);}
+	public boolean isEmpty() {return s.isEmpty();}
+	...
+}
+```
+
+__Item 18 : Create of inheritance or forbid it__
+
+First of all, you need to document all the uses of overridable methods.
+Remember that you'll have to stick to what you documented for
+The best way to test the design of your class is to try to write subclasses.
+Never call overridable method in your constructor.
+
+If a class is not designed and documented for inheritance it should be me made forbidden to inherit her either by making it final or making its constructors private (or package private) and use static factories.
+
