@@ -296,7 +296,7 @@ public class ForwardingSet<E> implements Set<E> {
 }
 ```
 
-__Item 18 : Create of inheritance or forbid it__
+__Item 19 : Create of inheritance or forbid it__
 
 First of all, you need to document all the uses of overridable methods.
 Remember that you'll have to stick to what you documented for
@@ -305,3 +305,41 @@ Never call overridable method in your constructor.
 
 If a class is not designed and documented for inheritance it should be me made forbidden to inherit her either by making it final or making its constructors private (or package private) and use static factories.
 
+
+__Item 20 : Interfaces are better than abstract classes__
+
+Since Java 8, it's possible to implements default mechanism in an interface.
+Java only permits single inheritance so you probably won't be able to extends your new abstract class to exising classes when you always will be permitted to implements a new interface.
+
+When designing interfaces, you can also provide a Skeletal implementation. This type of implementation is an abstract class that implements the interface. 
+It can help developers to implement your interfaces and since default methods are not permitted to override Object methods, you can do it in your Skeletal implementation.
+Doing both allows developers to use the one that will fit their needs.
+
+
+__Item 21 : Design interfaces for posterity__
+
+With Java 8, it's now possible to add new methods in interfaces without breaking old implemetations thanks to default methods.
+Nonetheless, it needs to be done carefully since it can still break old implementations that will fail at runtime.
+
+__Item 22 : Interfaces are mean't to define types__
+
+Interfaces must be used to define types, not to export constants.
+
+Example :
+
+```java
+//Constant interface antipattern. Don't do it !
+public interface PhysicalConstants {
+	static final double AVOGADROS_NUMBER = 6.022_140_857e23;
+	static final double BOLTZMAN_CONSTANT = 1.380_648_52e-23;
+	...
+}
+//Instead use
+public class PhysicalConstants {
+	private PhysicalConstants() {} //prevents instatiation
+	
+	public static final double AVOGADROS_NUMBER = 6.022_140_857e23;
+	public static final double BOLTZMAN_CONSTANT = 1.380_648_52e-23;
+	...
+}
+```
