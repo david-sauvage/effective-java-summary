@@ -343,3 +343,13 @@ public class PhysicalConstants {
 	...
 }
 ```
+
+__Item 23 : Tagged classes__
+
+Those kinds of classes are clutted with boilerplate code (Enum, switch, useless fields depending on the enum).
+Don't use them. Create a class hierarchy that will fit you needs better.
+
+
+__Item 24 : Nested classes__
+
+
