@@ -352,4 +352,5 @@ Don't use them. Create a class hierarchy that will fit you needs better.
 
 __Item 24 : Nested classes__
 
-
+If a member class does not need access to its enclosing instance then declare it static.
+If the class is non static, each intance will have a reference to its enclosing instance. That can result in the enclosing instance not being garbage collected and memory leaks.
