@@ -354,3 +354,35 @@ __Item 24 : Nested classes__
 
 If a member class does not need access to its enclosing instance then declare it static.
 If the class is non static, each intance will have a reference to its enclosing instance. That can result in the enclosing instance not being garbage collected and memory leaks.
+
+__Item 25 : One single top level class by file__
+
+Even thow it's possible to write multiple top level classes in a single file, don't !
+Doing so can result in multiple definition for a single class at compile time.
+
+## Generics
+
+__Item 26 : Raw types__
+
+A raw type is a generic type without its type parameter (Example : *List* is the raw type of *List\<E>*)
+Raw types shouldn't be used. They exist for compatibility with older versions of java.
+We want to discover mistakes as soon as possible (compile time) and using raw types will probably result in error during runtime.
+We still need to use raw types in two cases : 
+ - Usage of class litrals (List.class)
+ - Usage of instanceof
+ 
+Examples :
+
+```java
+//Use of raw type : don't !
+private final Collection stamps = ...
+stamps.add(new Coin(...)); //Erroneous insertion. Does not throw any error
+Stamp s = (Stamp) stamps.get(i); // Throws ClassCastException when getting the Coin
+
+//Common usage of instance of
+if (o instanceof Set){
+	Set<?> = (Set<?>) o;
+}
+```
+
+
