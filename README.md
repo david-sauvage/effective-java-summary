@@ -385,4 +385,21 @@ if (o instanceof Set){
 }
 ```
 
+__Item 27 : Unchecked warnings__
+
+Working with generics can often create warnings about them. Not having those warnings assure you that your code is typesafe.
+Try as hard as possible to eliminate them. Those warnings represents a potential ClassCastException at runtime.
+When you prove your code is safe but you can't remove this warning use the annotation @SuppressWarnings("unchecked") as close as possible to the declaration.
+Also comment on why it is safe.
+
+__Item 28 : List and arrays__
+
+Arrays are covariant and generics are invariant meaning that Object[] is a superclass of String[] when List<Object> is not for List<String>.
+Arrays are reified when generics are erased. Meaning that array still have their typing right at runtime when generics don't. In order to assure retrocompatibility with previous version List<String> will be a List at runtime.
+Typesafety is assure at compile time with generics. Since it's always better to have our coding errors the sooner (meaning at compile time), prefer the usage of generics over arrays
+
+__Item 29 : Generic types__ 
+
+Generic types are safer and easier to use because they won't require any cast from the user of this type.
+When creating new types, always think about generics in order to limit casts.
 
