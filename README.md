@@ -403,3 +403,10 @@ __Item 29 : Generic types__
 Generic types are safer and easier to use because they won't require any cast from the user of this type.
 When creating new types, always think about generics in order to limit casts.
 
+__Item 30 : Generic methods__
+
+Like types, methods are safer and easier to use it they are generics. 
+If you don't use generics, your code will require users of your method to cast parameters and return values which will result in non typesafe code.
+
+__Item 31 : Bounded wildcards__
+
