@@ -410,3 +410,24 @@ If you don't use generics, your code will require users of your method to cast p
 
 __Item 31 : Bounded wildcards__
 
+Bounded wildcards are important in order to make our code as generic as possible. 
+They allow us to permit more than a simple type but also all their sons (? extends E) or parents (? super E)
+
+Examples :
+
+If we have a stack implementation and what to add two methods pushAll and popAll, we should implement it this way :
+```java
+//We want to push in everything that is E or inherits E
+public void pushAll(Iterable<? Extends E> src){
+	for (E e : src) {
+		push(e);
+	}
+}
+
+//We want to pop out in any Collection that can welcome E
+public void popAll(Collection<? super E> dst){
+	while(!isEmpty()) {
+		dst.add(pop());
+	}
+}
+```
