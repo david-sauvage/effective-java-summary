@@ -431,3 +431,13 @@ public void popAll(Collection<? super E> dst){
 	}
 }
 ```
+
+__Item 32 : Generics and varargs__
+
+Even thow it's not legal to declare generic array explicitly, it's still possible to use varargs with generics.
+This inconsistency has been a choice because of its usefulness (Exemple : Arrays.asList(T... a)).
+This can, obviously, create problems regarding type safety. 
+To make a generic varargs method safe, be sure :
+ - it doesn't store anything in the varargs array
+ - it doesn't make the array  visible to untrusted code
+When those two conditions are met, use the annotation @SafeVarargs to remove warnings that you took care of and show to users of your methods that it is typesafe.
