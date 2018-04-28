@@ -441,3 +441,66 @@ To make a generic varargs method safe, be sure :
  - it doesn't store anything in the varargs array
  - it doesn't make the array  visible to untrusted code
 When those two conditions are met, use the annotation @SafeVarargs to remove warnings that you took care of and show to users of your methods that it is typesafe.
+
+__Item 33 : Typesafe heterogeneous container__
+
+Example : 
+
+```java
+public class Favorites{
+	private Map<Class<?>, Object> favorites = new HashMap<Class<?>, Object>();
+
+	public <T> void putFavorites(Class<T> type, T instance){
+		if(type == null)
+			throw new NullPointerException("Type is null");
+		favorites.put(type, type.cast(instance));//runtime safety with a dynamic cast
+	}
+
+	public <T> getFavorite(Class<T> type){
+		return type.cast(favorites.get(type));
+	}
+}
+```
+
+## Enums and annotations
+
+__Item 34 : Enums instead of int constants__
+
+Prior to enums it was common to use int to represent enum types. Doing so is now obsolete and enum types must be used.
+The usage of int made them difficult to debug (all you saw was int values)
+
+Enums are class that export one instance for each enumeration constant. They are instance controlled. They provide type safety and a way to iterate over each values.
+
+If you need a specific behavior for each value of your enum, you can declare an abstract method that you will implement for each value.
+
+Enums have an automatically generated valueOf(String) method that translate a constant's name into the constant. If the toString method is overriden, you should write a fromString method.
+
+Example : 
+
+```java
+public enum Operation{
+	PLUS("+") { double apply(double x, double y){return x + y;}},
+	MINUS("-") { double apply(double x, double y){return x - y;}},
+	TIMES("*") { double apply(double x, double y){return x * y;}},
+	DIVIDE("/") { double apply(double x, double y){return x / y;}};
+
+	private final String symbol;
+	private static final Map<String, Operation>	stringToEnum = Stream.of(values()).collect(toMap(Object::toString, e -> e));
+	
+	Operation(String symbol) {
+		this.symbol = symbol;
+	}
+	
+	public static Optional<Operation> fromString(String symbol) {
+		return Optional.ofNullable(stringToEnum.get(symbol);
+	}
+	
+	@Override
+	public String toString() {
+		return symbol;
+	}
+	
+	abstract double apply(double x, double y);
+	
+}
+```
