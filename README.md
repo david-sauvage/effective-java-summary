@@ -504,3 +504,52 @@ public enum Operation{
 	
 }
 ```
+
+__Item 35 : Instance fields instead of ordinals__
+
+Never use the ordinal method to calculate a value associated with an enum.
+
+Example : 
+
+```java
+//Never do this !
+public enum Ensemble{
+	SOLO, DUET, TRIO, QUARTET;
+	public int numberOfMusicians(){
+		return ordinal() +1;
+	}
+}
+
+//Instead, do this : 
+public enum Ensemble{
+	SOLO(1), DUET(2), TRIO(3), QUARTET(4);
+	
+	private final int numberOfMusicians;
+	
+	Ensemble(int size) {
+		this.numberOfMusicians = size;
+	}
+	
+	public int numberOfMusicians(){
+		return numberOfMusicians;
+	}
+}
+
+```
+
+__Item 36 : EnumSet instead of bit fields__
+
+Before enums existed, it was common to use bit fields for enumerated types that would be used in sets. This would allow you to combine them but they have the same issues that int constants saw in item 34.
+Instead use EnumSet to combine multiple enums.
+
+Example : 
+
+```java
+public class Text {
+	public enum Style {BOLD, ITALIC, UNDERLINE}
+	public void applyStyle(Set<Style> styles) {...}
+}
+
+//Then you would use it like this : 
+text.applyStyle(EnumSet.of(Style.BOLD, Style.ITALIC);
+```
