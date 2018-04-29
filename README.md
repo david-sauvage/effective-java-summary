@@ -551,5 +551,10 @@ public class Text {
 }
 
 //Then you would use it like this : 
-text.applyStyle(EnumSet.of(Style.BOLD, Style.ITALIC);
+text.applyStyle(EnumSet.of(Style.BOLD, Style.ITALIC));
 ```
+
+__Item 37 : EnumMap instead of ordinal__
+
+You may want to store data by a certain enum. For that you could have the idea to use the ordinal method. This is a bad practice.
+Instead, prefer the use of EnumMaps.
