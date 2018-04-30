@@ -564,3 +564,28 @@ __Item 38 : Emulate extensible enums with interfaces__
 The language doesn't allow us to write extensible enums. In the few cases that we would want an enum type to be extensible, we can emulate with an interface written for the basic enum.
 Users of the api will be able to implements this interface in order to "extend" your enum.
 
+__Item 39 : Annotations instead of naming patterns__
+
+Prior to JUnit 4, you needed to name you tests by starting with the word "test*". This is a bad practice since the compiler will never complain if by mistake you've names a few "tst*" for example.
+Annotations are a good way to avoid this kind of naming patterns and gives us more security.
+
+Example : 
+
+```java
+//Annotation with array parameter
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface ExceptionTest {
+ Class<? extends Exception>[] value();
+}
+
+//Usage of the annotation
+@ExceptionTest( {IndexOutOfBoundsException.class, NullPointerException.class})
+public void myMethod() { ... }
+
+
+//By reflexion you can use the annotation this way 
+m.isAnnotationPresent(ExceptionTest.class);
+//Or get the values this way : 
+Class<? extends Exception>[] excTypes = m.getAnnotation(ExceptionTest.class).value();
+```
