@@ -583,9 +583,30 @@ public @interface ExceptionTest {
 @ExceptionTest( {IndexOutOfBoundsException.class, NullPointerException.class})
 public void myMethod() { ... }
 
-
 //By reflexion you can use the annotation this way 
 m.isAnnotationPresent(ExceptionTest.class);
 //Or get the values this way : 
 Class<? extends Exception>[] excTypes = m.getAnnotation(ExceptionTest.class).value();
+```
+
+__Item 40 : Use @Override__
+
+You should use the @Override for every method declaration that you believe to override a superclass declaration.
+
+Example : 
+
+```java
+//Following code won't compile. Why ?
+@Override
+public boolean equals(Bigram b) {
+	return b.first == first && b.second == second;
+}
+
+/**
+This won't compile because we aren't overriding the Object.equals method. We are overloading it !
+The annotation allows the compiler to warn us of this mistake. That's why @Override is really important !
+**/
+
+
+
 ```
