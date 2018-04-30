@@ -558,3 +558,9 @@ __Item 37 : EnumMap instead of ordinal__
 
 You may want to store data by a certain enum. For that you could have the idea to use the ordinal method. This is a bad practice.
 Instead, prefer the use of EnumMaps.
+
+__Item 38 : Emulate extensible enums with interfaces__
+
+The language doesn't allow us to write extensible enums. In the few cases that we would want an enum type to be extensible, we can emulate with an interface written for the basic enum.
+Users of the api will be able to implements this interface in order to "extend" your enum.
+
