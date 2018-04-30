@@ -4,7 +4,7 @@
 
 ## Disclaimer
 This is a summary of the book "Effective Java 3rd Edition" by Joshua Bloch (https://twitter.com/joshbloch)
-The book is awesome and has a lot of interesting view in it. This document is only my take on what I want to really keep in mind when working with Java.
+The book is awesome and has a lot of interesting views in it. This document is only my take on what I want to really keep in mind when working with Java.
 I hope it's not a copyright infringement. If it is, please contact me in order to remove this file from github.
 
 ## Creating and destroying objects
@@ -95,6 +95,7 @@ public enum Elvis(){
 ```
 
 __Item 4 : Utility class should have a private constructor__
+
 A utility class with only static methods will never be instantiated. Make sure it's the case with a private constructor to prevent the construction of a useless object.
 
 Example :
@@ -109,6 +110,7 @@ public class UtilityClass{
 ```
 
 __Item 5 : Dependency Injection__
+
 A common mistake is the use of a singleton or a static utility class for a class that depends on underlying ressources.
 The use of dependency injection gives us more flexibility, testability and reusability
 
@@ -124,10 +126,12 @@ public class SpellChecker {
 ```
 
 __Item 6 : Avoid creating unnecessary objects__
+
 When possible use the static factory method instead of constructor (Example : Boolean)
-Be vigilant on autoboxing. The use of the primitive and his boxed primitive type can be harmful. Most of the time use primitives
+Be vigilant on autoboxing. The use of the primitive and his boxed primitive type can be harmful. Most of the time use primitives.
 
 __Item 7 : Eliminate obsolete object references__
+
 Memory leaks can happen in  :
  - A class that managed its own memory
  - Caching objects
@@ -150,12 +154,13 @@ public pop(){
 ```
 
 __Item 8 : Avoid finalizers and cleaners__
+
 Finalizers and cleaners are not guaranteed to be executed. It depends on the garbage collector and it can be executed long after the object is not referenced anymore.
 If you need to let go of resources, think about implementing the *AutoCloseable* interface.
 
 __Item 9 : Try with resources__
 
-When using try-finally blocks exception can occur in both the try and finally block. It result in non clear stacktrace.
+When using try-finally blocks exceptions can occur in both the try and finally block. It results in non clear stacktraces.
 Always use try with resources instead of try-finally. It's clearer and the exceptions that can occured will be clearer.
 
 Example :
@@ -177,7 +182,7 @@ static void copy(String src, String dst) throws IOException {
 __Item 10 : equals__
 
 The equals method needs to be overriden  when the class has a notion of logical equality.
-This is generally the case for value classes
+This is generally the case for value classes.
 
 The equals method must be :
  - Reflexive (x = x)
@@ -190,7 +195,7 @@ Not respecting those rules will have impact on the use of List, Set or Map.
 
 __Item 11 : hashCode__
 
-The hashCode method need to be overriden if the equals method is overriden.
+The hashCode method needs to be overriden if the equals method is overriden.
 
 Here is the contract of the hashCode method :
  - hashCode needs to be consistent
@@ -201,9 +206,9 @@ If you don't respect this contract, HashMap or HashSet will behave erratically.
 
 __Item 12 : toString__
 
-Override toString in every instantiable class unless a superclass already done it.
+Override toString in every instantiable classes unless a superclass already did it.
 Most of the time it helps when debugging.
-It needs to be a full representation of the object and every information contained in the toString representation should be accessible in some other way in order to avoid programmers to parse the String representation.
+It needs to be a full representation of the object and every informations contained in the toString representation should be accessible in some other way in order to avoid programmers to parse the String representation.
 
 __Item 13 : clone__
 
@@ -251,7 +256,8 @@ As a rule of thumb, try to limit mutability.
 __Item 18 : Favor composition over inheritance__
 
 With inheritance, you don't know how your class will react with a new version of its superclass.
-For example, you may have added a new method whose signature will be the same in the next release of its superclass.
+For example, you may have added a new method whose signature will happen to be the same than a method of its superclass in the next release.
+You will then override a method without even knowing it.
 
 Also, if there is a flaw in the API of the superclass you will suffer from it too.
 With composition, you can define your own API for your class.
@@ -296,14 +302,14 @@ public class ForwardingSet<E> implements Set<E> {
 }
 ```
 
-__Item 19 : Create of inheritance or forbid it__
+__Item 19 : Create classes for inheritance or forbid it__
 
 First of all, you need to document all the uses of overridable methods.
-Remember that you'll have to stick to what you documented for
+Remember that you'll have to stick to what you documented.
 The best way to test the design of your class is to try to write subclasses.
-Never call overridable method in your constructor.
+Never call overridable methods in your constructor.
 
-If a class is not designed and documented for inheritance it should be me made forbidden to inherit her either by making it final or making its constructors private (or package private) and use static factories.
+If a class is not designed and documented for inheritance it should be me made forbidden to inherit her, either by making it final, or making its constructors private (or package private) and use static factories.
 
 
 __Item 20 : Interfaces are better than abstract classes__
@@ -365,7 +371,7 @@ Doing so can result in multiple definition for a single class at compile time.
 __Item 26 : Raw types__
 
 A raw type is a generic type without its type parameter (Example : *List* is the raw type of *List\<E>*)
-Raw types shouldn't be used. They exist for compatibility with older versions of java.
+Raw types shouldn't be used. They exist for compatibility with older versions of Java.
 We want to discover mistakes as soon as possible (compile time) and using raw types will probably result in error during runtime.
 We still need to use raw types in two cases : 
  - Usage of class litrals (List.class)
@@ -390,13 +396,13 @@ __Item 27 : Unchecked warnings__
 Working with generics can often create warnings about them. Not having those warnings assure you that your code is typesafe.
 Try as hard as possible to eliminate them. Those warnings represents a potential ClassCastException at runtime.
 When you prove your code is safe but you can't remove this warning use the annotation @SuppressWarnings("unchecked") as close as possible to the declaration.
-Also comment on why it is safe.
+Also, comment on why it is safe.
 
 __Item 28 : List and arrays__
 
-Arrays are covariant and generics are invariant meaning that Object[] is a superclass of String[] when List<Object> is not for List<String>.
-Arrays are reified when generics are erased. Meaning that array still have their typing right at runtime when generics don't. In order to assure retrocompatibility with previous version List<String> will be a List at runtime.
-Typesafety is assure at compile time with generics. Since it's always better to have our coding errors the sooner (meaning at compile time), prefer the usage of generics over arrays
+Arrays are covariant and generics are invariant meaning that Object[] is a superclass of String[] when List\<Object> is not for List\<String>.
+Arrays are reified when generics are erased. Meaning that array still have their typing right at runtime when generics don't. In order to assure retrocompatibility with previous version List\<String> will be a List at runtime.
+Typesafety is assured at compile time with generics. Since it's always better to have our coding errors the sooner (meaning at compile time), prefer the usage of generics over arrays.
 
 __Item 29 : Generic types__ 
 
@@ -411,11 +417,11 @@ If you don't use generics, your code will require users of your method to cast p
 __Item 31 : Bounded wildcards__
 
 Bounded wildcards are important in order to make our code as generic as possible. 
-They allow us to permit more than a simple type but also all their sons (? extends E) or parents (? super E)
+They allow more than a simple type but also all their sons (? extends E) or parents (? super E)
 
 Examples :
 
-If we have a stack implementation and what to add two methods pushAll and popAll, we should implement it this way :
+If we have a stack implementation and we want to add two methods pushAll and popAll, we should implement it this way :
 ```java
 //We want to push in everything that is E or inherits E
 public void pushAll(Iterable<? Extends E> src){
@@ -434,13 +440,13 @@ public void popAll(Collection<? super E> dst){
 
 __Item 32 : Generics and varargs__
 
-Even thow it's not legal to declare generic array explicitly, it's still possible to use varargs with generics.
+Even thow it's not legal to declare generic arrays explicitly, it's still possible to use varargs with generics.
 This inconsistency has been a choice because of its usefulness (Exemple : Arrays.asList(T... a)).
 This can, obviously, create problems regarding type safety. 
 To make a generic varargs method safe, be sure :
  - it doesn't store anything in the varargs array
- - it doesn't make the array  visible to untrusted code
-When those two conditions are met, use the annotation @SafeVarargs to remove warnings that you took care of and show to users of your methods that it is typesafe.
+ - it doesn't make the array visible to untrusted code
+When those two conditions are met, use the annotation @SafeVarargs to remove warnings that you took care of and show users of your methods that it is typesafe.
 
 __Item 33 : Typesafe heterogeneous container__
 
@@ -467,13 +473,13 @@ public class Favorites{
 __Item 34 : Enums instead of int constants__
 
 Prior to enums it was common to use int to represent enum types. Doing so is now obsolete and enum types must be used.
-The usage of int made them difficult to debug (all you saw was int values)
+The usage of int made them difficult to debug (all you saw was int values).
 
-Enums are class that export one instance for each enumeration constant. They are instance controlled. They provide type safety and a way to iterate over each values.
+Enums are classes that export one instance for each enumeration constant. They are instance controlled. They provide type safety and a way to iterate over each values.
 
 If you need a specific behavior for each value of your enum, you can declare an abstract method that you will implement for each value.
 
-Enums have an automatically generated valueOf(String) method that translate a constant's name into the constant. If the toString method is overriden, you should write a fromString method.
+Enums have an automatically generated valueOf(String) method that translates a constant's name into the constant. If the toString method is overriden, you should write a fromString method.
 
 Example : 
 
@@ -501,7 +507,6 @@ public enum Operation{
 	}
 	
 	abstract double apply(double x, double y);
-	
 }
 ```
 
@@ -516,7 +521,7 @@ Example :
 public enum Ensemble{
 	SOLO, DUET, TRIO, QUARTET;
 	public int numberOfMusicians(){
-		return ordinal() +1;
+		return ordinal() + 1;
 	}
 }
 
@@ -539,7 +544,7 @@ public enum Ensemble{
 
 __Item 36 : EnumSet instead of bit fields__
 
-Before enums existed, it was common to use bit fields for enumerated types that would be used in sets. This would allow you to combine them but they have the same issues that int constants saw in item 34.
+Before enums existed, it was common to use bit fields for enumerated types that would be used in sets. This would allow you to combine them but they have the same issues than int constants we saw in item 34.
 Instead use EnumSet to combine multiple enums.
 
 Example : 
@@ -561,12 +566,12 @@ Instead, prefer the use of EnumMaps.
 
 __Item 38 : Emulate extensible enums with interfaces__
 
-The language doesn't allow us to write extensible enums. In the few cases that we would want an enum type to be extensible, we can emulate with an interface written for the basic enum.
+The language doesn't allow us to write extensible enums. In the few cases that we would want an enum type to be extensible, we can emulate it with an interface written for the basic enum.
 Users of the api will be able to implements this interface in order to "extend" your enum.
 
 __Item 39 : Annotations instead of naming patterns__
 
-Prior to JUnit 4, you needed to name you tests by starting with the word "test*". This is a bad practice since the compiler will never complain if by mistake you've names a few "tst*" for example.
+Prior to JUnit 4, you needed to name you tests by starting with the word "test". This is a bad practice since the compiler will never complain if, by mistake, you've names a few of them "tset*".
 Annotations are a good way to avoid this kind of naming patterns and gives us more security.
 
 Example : 
