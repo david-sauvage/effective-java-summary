@@ -606,7 +606,9 @@ public boolean equals(Bigram b) {
 This won't compile because we aren't overriding the Object.equals method. We are overloading it !
 The annotation allows the compiler to warn us of this mistake. That's why @Override is really important !
 **/
-
-
-
 ```
+
+__Item 41 : Marker interfaces__
+
+A marker interface is an interface that contains no method declaration. It only "marks" a class that implements this interface. One common example in the JDK is Serializable.
+Using marker interface results in compile type checking.
