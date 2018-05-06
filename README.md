@@ -617,3 +617,26 @@ __Item 41 : Marker interfaces__
 
 A marker interface is an interface that contains no method declaration. It only "marks" a class that implements this interface. One common example in the JDK is Serializable.
 Using marker interface results in compile type checking.
+
+## Lambdas and streams
+
+__Item 42 : Lambdas are clearer than anonymous classes__
+
+Lambdas are the best way to represent function objects. As a rule of thumb, lambdas needs to be short to be readable. Three lines seems to be a reasonnable limit.
+Also the lambdas needs to be self-explanatory since it lacks name or documentation. Always think in terms of readability.
+
+__Item 43 : Method references__
+
+Most of the time, method references are shorter and then clearer. The more arguments the lambdas has, the more the method reference will be clearer.
+When a lambda is too long, you can refactor it to a method (which will give a name and documentation) and use it as a method reference.
+
+They are five kinds of method references : 
+
+|Method ref type|Example|Lambda equivalent|
+|--|--|--|
+|Static|Integer::parseInt|str -> Integer.parseInt(str)|
+|Bound|Instant.now()::isAfter|Instant then = Instant.now(); t->then.isAfter(t)|
+|Unbound|String::toLowerCase|str -> str.toLowerCase()|
+|Class Constructor|TreeMap<K,V>::new|() -> new TreeMap<K,V>|
+|Array Constructor|int[]::new|len -> new int[len]|
+
