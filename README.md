@@ -640,3 +640,24 @@ They are five kinds of method references :
 |Class Constructor|TreeMap<K,V>::new|() -> new TreeMap<K,V>|
 |Array Constructor|int[]::new|len -> new int[len]|
 
+__Item 44 : Standard functional interfaces__
+
+java.util.Function provides a lot of functional interfaces. If one of those does the job, you should use it
+
+Here are more common interfaces : 
+
+|Interface|Function signature|Example|
+|--|--|--|
+|UnaryOperator<T>|T apply(T t)|String::toLowerCase|
+|BinaryOperator<T>|T apply(T t1, T t2)|BigInteger::add|
+|Predicate<T>|boolean test(T t)|Collection::isEmpty|
+|Function<T,R>|R apply(T t)|Arrays::asList|
+|Supplier<T>|T get()|Instant::now|
+|Consumer<T>|void accept(T t)|System.out::println|
+
+When creating your own functional interfaces, always annotate with @FunctionalInterfaces so that it won't compile unless it has exactly one abstract method.
+
+__Item 45 : Streams__
+
+
+
