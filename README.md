@@ -659,5 +659,14 @@ When creating your own functional interfaces, always annotate with @FunctionalIn
 
 __Item 45 : Streams__
 
+Carefully name parameters of lambda in order to make your stream pipelines readable. Also, use helper methods for the same purpose.
 
+Streams should mostly be used for tasks like : 
+ - Transform a sequence of elements
+ - Filter a sequence of elements
+ - Combine sequences of elements 
+ - Accumulate a sequence of elements inside a collection (perhaps grouping them)
+ - Search for en element inside of a sequence
+
+ 
 
