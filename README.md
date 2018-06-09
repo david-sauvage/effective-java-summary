@@ -668,5 +668,10 @@ Streams should mostly be used for tasks like :
  - Accumulate a sequence of elements inside a collection (perhaps grouping them)
  - Search for en element inside of a sequence
 
+ __Item 46 : Prefer side-effect-free functions in streams__
  
+Programming with stream pipelines should be side effect free. 
+The terminal forEach method should only be used to report the result of a computation not to perform the computation itself.
+In order to use  streams properly, you need to know about collectors. The most importants are toList, toSet, toMap, groupingBy and joining.
+
 
