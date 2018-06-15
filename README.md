@@ -684,7 +684,11 @@ __Item 48 : Parallelization__
 Parallelizing a pipeline is unlikely to increase its performance if it comes from a Stream.iterate or the limit method is used.
 As a rule of thumb, parallelization should be used on ArrayList, HashMap, HashSet, ConcurrentHashMap, arrays, int ranges and double ranges. Those structure can be divided in any desired subranged and so on, easy to work among parrallel threads.
 
+## Methods
 
+__Item 49 : Check parameters for validity__
 
-
+When writing a public or protected method, you should begin by checking that the parameters are not enforcing the restrictions that you set.
+You should also document what kind of exception you will throw if a parameter enforce those restrictions.
+The *Objects.requireNonNull* method should be used for nullability checks.
 
