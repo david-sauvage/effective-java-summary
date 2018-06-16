@@ -692,3 +692,39 @@ When writing a public or protected method, you should begin by checking that the
 You should also document what kind of exception you will throw if a parameter enforce those restrictions.
 The *Objects.requireNonNull* method should be used for nullability checks.
 
+__Item 50 : Defensive copies__
+
+If a class has mutable components that comes from or goes to the client, the class needs to make defensive copies of those components.
+
+Example : 
+
+```java
+//This example is a good example but since java 8, we would use Instant instead of Date which is immutable
+public final class Period{
+	private final Date start;
+	private final Date end;
+	/**
+	* @param start the beginning of the period
+	* @param end the end of the period; must not precede start;
+	* @throws IllegalArgumentException if start is after end
+	* @throws NullPointerException if start or end is null
+	*/
+	public Period(Date start, Date end) {
+		this.start = new Date(start.getTime());
+		this.end = new Date(end.getTime());
+		if(start.compare(end) > 0) {
+			throw new IllegalArgumentException(start + " after " + end );
+		}
+	}
+
+	public Date start(){
+		return new Date(start.getTime());
+	}
+
+	public Date end(){
+		return new Date(end.getTime());
+	}
+	...
+}
+```
+
