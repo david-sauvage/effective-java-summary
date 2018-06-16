@@ -728,3 +728,11 @@ public final class Period{
 }
 ```
 
+__Item 51 : Method signature__
+
+Few rules to follow when designing you API :
+ - Choose your methode name carefully. Be explicit and consistent.
+ - Don't provide too many convenience methods. A small API is easier to learn and use.
+ - Avoid long parameter lists. Use helper class if necessary.
+ - Favor interfaces over classes for parameter types.
+ - Prefer enum types to boolean parameters when it makes the parameter more explicit.
