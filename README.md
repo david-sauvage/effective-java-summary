@@ -767,3 +767,12 @@ public class CollectionClassifier {
 
 As shown in the previous example overloading can be confusing. It is recommanded to never export two overloadings with the same number of parameters.
 If you have to, consider giving different names to your methods. (writeInt, writeLong...)
+
+__Item 53 : Varargs__
+
+Varargs are great when you need to define a method with a variable number of arguments. Always precede the varargs parameter with any required parameter.
+
+__Item 54 : Return empty collections or arrays instead of null__
+
+Returning null when you don't have elements to return makes the use of your methods more difficult. Your client will have to check if you object is not null.
+Instead always return an empty array of collection.
