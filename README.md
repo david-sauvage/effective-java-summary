@@ -781,3 +781,8 @@ __Item 55 : Return of Optionals__
 
 You should declare a method to return Optional<T> if it might not be able to return a result and clients will have to perform special processing if no result is returned.
 You should never use an optional of a boxed primitive. Instead use OptionalInt, OptionalLong etc...
+
+__Item 56 : Documentation__
+
+Documentation should be mandatory for exported API. 
+
