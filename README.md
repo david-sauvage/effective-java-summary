@@ -776,3 +776,8 @@ __Item 54 : Return empty collections or arrays instead of null__
 
 Returning null when you don't have elements to return makes the use of your methods more difficult. Your client will have to check if you object is not null.
 Instead always return an empty array of collection.
+
+__Item 55 : Return of Optionals__
+
+You should declare a method to return Optional<T> if it might not be able to return a result and clients will have to perform special processing if no result is returned.
+You should never use an optional of a boxed primitive. Instead use OptionalInt, OptionalLong etc...
