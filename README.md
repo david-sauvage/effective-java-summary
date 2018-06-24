@@ -786,3 +786,29 @@ __Item 56 : Documentation__
 
 Documentation should be mandatory for exported API. 
 
+## General programming
+
+__Item 57 : Minimize the scope of local variables__
+
+To limit the scope of your variables, you should : 
+ - declare them when first used
+ - use for loops instead of while when doable
+ - keep your methods small and focused
+ 
+```java
+//Idiom for iterating over a collection 
+for (Element e : c) {
+	//do something with e
+}
+
+//Idiom when you need the iterator
+for (Iterator<Element> i = c.iterator() ; i.hasNext() ; ) {
+	Element e = i.next();
+	//Do something with e
+}
+
+//Idiom when the condition of for is expensive
+for (int i = 0, n = expensiveComputation() ; i < n ; i++) {
+	//Do something with i
+}
+```
