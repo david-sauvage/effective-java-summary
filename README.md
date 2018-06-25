@@ -831,3 +831,18 @@ __Item 60 : Avoid float and double for exact answers__
 
 Float and double types are not suited for monetary calculations. Use BigDecimal, int or long for this kind of calculation.
  
+__Item 61 : Prefer primitives to boxed primitives__
+
+Use primitives whenever you can. The use of boxed primitives is essentially for type parameters in parameterized types (example : keys and values in collections)
+
+```java
+//Can you spot the object creation ?
+Long sum = 0L;
+for (long i = 0 ; i < Integer.MAX_VALUE ; i++) {
+	sum += i;
+}
+System.out.println(sum);
+
+//sum is repeatably boxed and unboxed which cause a really slow running time.
+
+```
