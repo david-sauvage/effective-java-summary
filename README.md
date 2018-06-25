@@ -822,3 +822,8 @@ Unfortunately, there are situations where you can't use this kind of loops :
  - When you need to replace some elements
  - When you need to traverse multiple collections in parallel
  
+__Item 59 : Know the libraries__
+
+When using a standard library you take advantage of the knowledge of experts and the experience of everyone who used it before you.
+Don't reinvent the wheel. Library code is probably better than code that we would write simply because this code receives more attention than what we could afford.
+ 
