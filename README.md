@@ -846,3 +846,7 @@ System.out.println(sum);
 //sum is repeatably boxed and unboxed which cause a really slow running time.
 
 ```
+
+__Item 62 : Avoid Strings when other types are more appropriate__
+
+Avoid natural tendency to represent objects as Strings when there is better data types available.
