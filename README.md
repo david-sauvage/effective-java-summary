@@ -798,7 +798,7 @@ To limit the scope of your variables, you should :
 ```java
 //Idiom for iterating over a collection 
 for (Element e : c) {
-	//do something with e
+	//Do something with e
 }
 
 //Idiom when you need the iterator
@@ -812,3 +812,13 @@ for (int i = 0, n = expensiveComputation() ; i < n ; i++) {
 	//Do something with i
 }
 ```
+
+__Item 58 : For each loops instead of traditional for loops__
+
+The default for loop must be a for each loop. It's more readable and can avoid you some mistakes.
+
+Unfortunately, there are situations where you can't use this kind of loops : 
+ - When you need to delete some elements
+ - When you need to replace some elements
+ - When you need to traverse multiple collections in parallel
+ 
