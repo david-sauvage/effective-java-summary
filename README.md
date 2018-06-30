@@ -868,3 +868,7 @@ When you need to work with classes unknown at compile time, try to only use it t
 __Item 66 : Native methods__
 
 It's really rare that you will need to use native methods to improve performances. If it's needed to access native libraries use as little native code as possible.
+
+__Item 67 : Optimization__
+
+Write good programs rather than fast one. Good programs localize design decisions within individual components so those individuals decisions can be changed easily if performance becomes an issue.
