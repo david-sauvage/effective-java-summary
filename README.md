@@ -850,3 +850,12 @@ System.out.println(sum);
 __Item 62 : Avoid Strings when other types are more appropriate__
 
 Avoid natural tendency to represent objects as Strings when there is better data types available.
+
+__Item 63 : String concatenation__
+
+Don't use the String concatenation operator to combine more than a few strings. Instead, use a StringBuilder.
+
+__Item 64 : Refer to objects by their interfaces__
+
+If an interface exists, parameters, return values, variables and fields should be declared using this interface to insure flexibility.
+If there is no appropriate interface, use the least specific class that provides the functionality you need.
