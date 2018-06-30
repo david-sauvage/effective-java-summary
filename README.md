@@ -864,3 +864,7 @@ __Item 65 : Prefer interfaces to reflection__
 
 Reflextion is a powerful tool but has many disadvantages. 
 When you need to work with classes unknown at compile time, try to only use it to instantiate object and then access them by using an interface of superclass known at compile time.
+
+__Item 66 : Native methods__
+
+It's really rare that you will need to use native methods to improve performances. If it's needed to access native libraries use as little native code as possible.
