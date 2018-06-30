@@ -872,3 +872,17 @@ It's really rare that you will need to use native methods to improve performance
 __Item 67 : Optimization__
 
 Write good programs rather than fast one. Good programs localize design decisions within individual components so those individuals decisions can be changed easily if performance becomes an issue.
+Good designs decisions will give you good performances.
+Measure performance before and after each attempted optimization.
+
+__Item 68 : Naming conventions__
+
+| Indentifier Type        |  Examples 								      |
+|-------------------------|-----------------------------------------------|
+| Package                 | org.junit.jupiter, com.google.common.collect  |
+| Class or Interface      | Stream, FutureTask, LinkedHashMap, HttpServlet|
+| Method or Field         | remove, groupBy, getCrc      				  |
+| Constant Field          | MIN_VALUE, NEGATIVE_INFINITY      			  |
+| Local Variable   		  | i, denom, houseNum          				  |
+| Type Parameter 		  | T, E, K, V, X, R, U, V, T1, T2  			  |
+
