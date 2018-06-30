@@ -886,3 +886,9 @@ __Item 68 : Naming conventions__
 | Local Variable   		  | i, denom, houseNum          				  |
 | Type Parameter 		  | T, E, K, V, X, R, U, V, T1, T2  			  |
 
+## Exceptions
+
+__Item 69 : Exceptions are for exceptional conditions__
+
+Exceptions should never be used for ordinary control flow. They are designed for exceptional conditions and should be used accordingly.
+
