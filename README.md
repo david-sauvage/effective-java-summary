@@ -859,3 +859,8 @@ __Item 64 : Refer to objects by their interfaces__
 
 If an interface exists, parameters, return values, variables and fields should be declared using this interface to insure flexibility.
 If there is no appropriate interface, use the least specific class that provides the functionality you need.
+
+__Item 65 : Prefer interfaces to reflection__
+
+Reflextion is a powerful tool but has many disadvantages. 
+When you need to work with classes unknown at compile time, try to only use it to instantiate object and then access them by using an interface of superclass known at compile time.
