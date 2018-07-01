@@ -892,3 +892,10 @@ __Item 69 : Exceptions are for exceptional conditions__
 
 Exceptions should never be used for ordinary control flow. They are designed for exceptional conditions and should be used accordingly.
 
+__Item 70 : Checked exceptions and runtime exceptions__
+
+Use checked exceptions for conditions from which the caller can reasonably recover.
+Use runtime exceptions to indicate programming errors.
+By convention, *errors* are only used by the JVM to indicate conditions that make execution impossible. 
+Therefore, all the unchecked throwables you implement must be a subclass of RuntimeException.
+
