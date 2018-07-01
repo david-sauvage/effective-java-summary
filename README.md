@@ -904,3 +904,16 @@ __Item 71 : Avoid unnecessary use of checked exceptions__
 When used sparingly, checked exceptions increase the reliability of programs. When overused, they make APIs painful to use.
 Use checked exceptions only when you want the callers to handle the exceptional condition.
 Remember that a method that throws a checked exception can't be used directly in streams.
+
+__Item 72 : Standard exceptions__
+
+When appropriate, use the exceptions provided by the jdk. Here's a list of the most common exceptions : 
+
+| Exception                       |  Occasion for Use                                                              |
+|---------------------------------|--------------------------------------------------------------------------------|
+| IllegalArgumentException        |  Non-null parameter value is inappropriate                                     |
+| IllegalStateException           |  Object state is inappropriate for method invocation                           |
+| NullPointerException            |  Parameter value is null where prohibited                                      |
+| IndexOutOfBoundsException       |  Index parameter value is out of range                                         |
+| ConcurrentModificationException |  Concurrent modification of an object has been detected where it is prohibited |
+| UnsupportedOperationException   |  Object does not support method                                                |
