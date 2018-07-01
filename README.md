@@ -899,3 +899,8 @@ Use runtime exceptions to indicate programming errors.
 By convention, *errors* are only used by the JVM to indicate conditions that make execution impossible. 
 Therefore, all the unchecked throwables you implement must be a subclass of RuntimeException.
 
+__Item 71 : Avoid unnecessary use of checked exceptions__
+
+When used sparingly, checked exceptions increase the reliability of programs. When overused, they make APIs painful to use.
+Use checked exceptions only when you want the callers to handle the exceptional condition.
+Remember that a method that throws a checked exception can't be used directly in streams.
