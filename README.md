@@ -917,3 +917,8 @@ When appropriate, use the exceptions provided by the jdk. Here's a list of the m
 | IndexOutOfBoundsException       |  Index parameter value is out of range                                         |
 | ConcurrentModificationException |  Concurrent modification of an object has been detected where it is prohibited |
 | UnsupportedOperationException   |  Object does not support method                                                |
+
+__Item 73 : Throw exceptions that are appropriate to the abstraction__
+
+Higher layers should catch lower level exceptions and throw exceptions that can be explained at their level of abstraction.
+While doing so, don't forget to use chaining in order to provide the underlying cause for failure.
