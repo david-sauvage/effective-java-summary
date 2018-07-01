@@ -922,3 +922,8 @@ __Item 73 : Throw exceptions that are appropriate to the abstraction__
 
 Higher layers should catch lower level exceptions and throw exceptions that can be explained at their level of abstraction.
 While doing so, don't forget to use chaining in order to provide the underlying cause for failure.
+
+__Item 74 : Document thrown exceptions__
+
+Document every exceptions that can be thrown by your methods, checked or unchecked. This documentation should be done by using the @throws tag.
+Nonetheless, only checked exceptions must be declared as thrown in your code.
