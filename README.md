@@ -927,3 +927,21 @@ __Item 74 : Document thrown exceptions__
 
 Document every exceptions that can be thrown by your methods, checked or unchecked. This documentation should be done by using the @throws tag.
 Nonetheless, only checked exceptions must be declared as thrown in your code.
+
+__Item 75 : Include failure capture information in detail messages__
+
+The detailed message of an exception should contain the values of all parameters that lead to such failure.
+
+Example : 
+
+```java
+public IndexOutOfBoundsException(int lowerBound, int upperBound, int index) {
+	super(String.format("Lower bound : %d, Upper bound : %d, Index : %d", lowerBound, upperBound, index));
+	
+	//Save for programmatic access
+	this.lowerBound = lowerBound;
+	this.upperBound = upperBound;
+	this.index = index;
+}
+
+```
