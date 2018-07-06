@@ -945,3 +945,13 @@ public IndexOutOfBoundsException(int lowerBound, int upperBound, int index) {
 }
 
 ```
+
+__Item 76 : Failure atomicity__
+
+A failed method invocation should leave the object in the state that it was before the invocation.
+
+__Item 77 : Don't ignore exceptions__
+
+An empty catch block defeats the purpose of exception which is to force you to handle exceptional conditions.
+When you decide with *very* good reasons to ignore an exception the catch block should contain a comment explaining those reasons and the variable should be named ignored.
+
