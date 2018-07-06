@@ -955,3 +955,11 @@ __Item 77 : Don't ignore exceptions__
 An empty catch block defeats the purpose of exception which is to force you to handle exceptional conditions.
 When you decide with *very* good reasons to ignore an exception the catch block should contain a comment explaining those reasons and the variable should be named ignored.
 
+## Concurrency
+
+__Item 78 : Synchronize access to shared mutable data__
+
+Synchronization is not guaranteed to work unless both read and write operations are synchronized.
+When multiple threads share mutable data, each of them that reads or writes this data must perform synchronization.
+
+
