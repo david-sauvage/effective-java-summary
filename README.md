@@ -962,4 +962,7 @@ __Item 78 : Synchronize access to shared mutable data__
 Synchronization is not guaranteed to work unless both read and write operations are synchronized.
 When multiple threads share mutable data, each of them that reads or writes this data must perform synchronization.
 
+__Item 79 : Avoid excessive synchronization__
 
+As a rule, you should do as little work as possible inside synchronized regions.
+When designing a mutable class think about whether or not it should be synchronized.
