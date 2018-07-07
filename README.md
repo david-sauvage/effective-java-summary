@@ -1036,3 +1036,8 @@ __Item 85 : Prefer alternatives to Java serialization__
 
 Serialization is dangerous and should be avoided. Alternatives such as JSON should be used.
 If working with serialization, try not deserialize untrusted data. If you have no other choice, use object deserialization filtering.
+
+__Item 86 : Implement *Serializable* with great caution__
+
+Unless a class will only be used in a protected environment where versions will never have to interoperate and servers will never be exposed to untrusted data, implementing Serializable should be decided with great care.
+
