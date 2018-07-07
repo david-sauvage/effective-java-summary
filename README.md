@@ -966,3 +966,8 @@ __Item 79 : Avoid excessive synchronization__
 
 As a rule, you should do as little work as possible inside synchronized regions.
 When designing a mutable class think about whether or not it should be synchronized.
+
+__Item 80 : Executors, tasks and streams__
+
+The java.util.concurrent package added a the executor framework. It contains class such as ExecutorService that can help you run Tasks in other threads.
+You should refrain from using Threads and now using this framework in order to parallelize computation when needed.
