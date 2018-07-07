@@ -978,3 +978,5 @@ Using wait and notify is quite difficult. You should then use the higher level c
  - Common concurrent collections : ConcurrentHashMap, BlockingQueue
  - Common synchronizers : CountdownLatch, Semaphore
  
+__Item 82 : Document thread safety__
+
