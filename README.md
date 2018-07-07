@@ -971,3 +971,10 @@ __Item 80 : Executors, tasks and streams__
 
 The java.util.concurrent package added a the executor framework. It contains class such as ExecutorService that can help you run Tasks in other threads.
 You should refrain from using Threads and now using this framework in order to parallelize computation when needed.
+
+__Item 81 : Prefer concurrency  utilities to wait and notify__
+
+Using wait and notify is quite difficult. You should then use the higher level concurrency utilities such as the Executor Framework, concurrent collections and synchronizers.
+ - Common concurrent collections : ConcurrentHashMap, BlockingQueue
+ - Common synchronizers : CountdownLatch, Semaphore
+ 
