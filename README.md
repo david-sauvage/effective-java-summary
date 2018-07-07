@@ -1029,3 +1029,10 @@ __Item 84 : Don't depend on the thread scheduler__
 
 The best way to write a robust and responsive program is to ensure that the average number of *runnable* threads is not significantly greater than the number of processors.
 Thread priorities are among the least portable features of Java.
+
+##Serialization
+
+__Item 85 : Prefer alternatives to Java serialization__
+
+Serialization is dangerous and should be avoided. Alternatives such as JSON should be used.
+If working with serialization, try not deserialize untrusted data. If you have no other choice, use object deserialization filtering.
