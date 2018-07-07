@@ -980,3 +980,47 @@ Using wait and notify is quite difficult. You should then use the higher level c
  
 __Item 82 : Document thread safety__
 
+Every class should document its thread safety. When writing and unconditionnally thread safe class, consider using a private lock object instead of synchronized methods. This will give you more flexibility.
+
+Example : 
+
+```java
+// Private lock object idiom - thwarts denial-of-service attack
+private final Object lock = new Object();
+
+public void foo() {
+	synchronized(lock) {
+		...
+	}
+}
+```
+
+__Item 83 : Lazy initialization__
+
+In the context of concurrency, lazy initialization is tricky. Therefore, normal initialization is preferable to lazy initialization.
+
+On a static field you can use the lazy initialization holder class idiom :
+```java
+// Lazy initialization holder class idiom for static fields
+private static class FieldHolder {
+	static final FieldType field = computeFieldValue();
+}
+static FieldType getField() { return FieldHolder.field; }
+```
+
+On an instance field you can use the double-check idiom :
+```java
+// Double-check idiom for lazy initialization of instance fields
+private volatile FieldType field;
+FieldType getField() {
+	FieldType result = field;
+	if (result == null) { // First check (no locking)
+		synchronized(this) {
+			result = field;
+			if (result == null) // Second check (with locking)
+				field = result = computeFieldValue();
+		}
+	}
+	return result;
+}
+```
