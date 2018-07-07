@@ -1041,3 +1041,7 @@ __Item 86 : Implement *Serializable* with great caution__
 
 Unless a class will only be used in a protected environment where versions will never have to interoperate and servers will never be exposed to untrusted data, implementing Serializable should be decided with great care.
 
+__Item 87 : Custom serialized form__
+
+Use the default serialized form only if it's a reasonable description of the logical state of the object. Otherwise, write your own implementation in order to only have its logical state.
+
