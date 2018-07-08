@@ -1052,3 +1052,37 @@ When writing a readObject method, keep in mind that you are writing a public con
 __Item 89 : For instance control, prefer enum types to readResolve__
 
 When you need instance control (such a Singleton) use enum types whenever possible.
+
+__Item 90 : Serialization proxies__
+
+The serialization proxy pattern is probably the easiest way to robustly serialize objects if those objects can't be extendable or does not contain circularities.
+
+```java
+// Serialization proxy for Period class
+private static class SerializationProxy implements Serializable {
+	private final Date start;
+	private final Date end;
+
+	SerializationProxy(Period p) {
+		this.start = p.start;
+		this.end = p.end;
+	}
+
+	private static final long serialVersionUID = 234098243823485285L; // Any number will do (Item 75)
+}
+
+// writeReplace method for the serialization proxy pattern
+private Object writeReplace() {
+	return new SerializationProxy(this);
+}
+
+// readObject method for the serialization proxy pattern
+private void readObject(ObjectInputStream stream) throws InvalidObjectException {
+	throw new InvalidObjectException("Proxy required");
+}
+
+// readResolve method for Period.SerializationProxy
+private Object readResolve() {
+	return new Period(start, end); // Uses public constructor
+}
+```
