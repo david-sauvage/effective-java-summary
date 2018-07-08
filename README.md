@@ -1048,3 +1048,7 @@ Use the default serialized form only if it's a reasonable description of the log
 __Item 88 : Write readObject methods defensively__
 
 When writing a readObject method, keep in mind that you are writing a public constructor and it must produce a valid instance regardless of the stream it is given.
+
+__Item 89 : For instance control, prefer enum types to readResolve__
+
+When you need instance control (such a Singleton) use enum types whenever possible.
