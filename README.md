@@ -1045,3 +1045,6 @@ __Item 87 : Custom serialized form__
 
 Use the default serialized form only if it's a reasonable description of the logical state of the object. Otherwise, write your own implementation in order to only have its logical state.
 
+__Item 88 : Write readObject methods defensively__
+
+When writing a readObject method, keep in mind that you are writing a public constructor and it must produce a valid instance regardless of the stream it is given.
