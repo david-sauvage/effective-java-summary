@@ -327,7 +327,7 @@ __Item 21 : Design interfaces for posterity__
 With Java 8, it's now possible to add new methods in interfaces without breaking old implemetations thanks to default methods.
 Nonetheless, it needs to be done carefully since it can still break old implementations that will fail at runtime.
 
-__Item 22 : Interfaces are mean't to define types__
+__Item 22 : Interfaces are meant to define types__
 
 Interfaces must be used to define types, not to export constants.
 
@@ -342,7 +342,7 @@ public interface PhysicalConstants {
 }
 //Instead use
 public class PhysicalConstants {
-	private PhysicalConstants() {} //prevents instatiation
+	private PhysicalConstants() {} //prevents instantiation
 	
 	public static final double AVOGADROS_NUMBER = 6.022_140_857e23;
 	public static final double BOLTZMAN_CONSTANT = 1.380_648_52e-23;
