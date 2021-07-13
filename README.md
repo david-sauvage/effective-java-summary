@@ -775,7 +775,7 @@ Varargs are great when you need to define a method with a variable number of arg
 __Item 54 : Return empty collections or arrays instead of null__
 
 Returning null when you don't have elements to return makes the use of your methods more difficult. Your client will have to check if you object is not null.
-Instead always return an empty array of collection.
+Instead always return an empty array or collection.
 
 __Item 55 : Return of Optionals__
 
