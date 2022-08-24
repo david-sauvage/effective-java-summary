@@ -22,7 +22,7 @@ Cons
 
 Example :
 ```java
-public static Boolean valueOf(boolean b){
+public static Boolean valueOf(boolean b) {
 	return b ? Boolean.TRUE :  Boolean.FALSE;
 }
 ```
@@ -69,11 +69,11 @@ public class NutritionFacts {
 			sodium = val;
 			return this;				
 		}
-		public NutritionFacts build(){
+		public NutritionFacts build() {
 			return new NutritionFacts(this);
 		}
 	}
-	private NutritionFacts(Builder builder){
+	private NutritionFacts(Builder builder) {
 		servingSize		= builder.servingSize;
 		servings 		= builder.servings;
 		calories		= builder.calories;
@@ -87,7 +87,7 @@ __Item 3 : Think of Enum to implement the Singleton pattern__
 
 Example :
 ```java
-public enum Elvis(){
+public enum Elvis() {
 	INSTANCE;
 	...
 	public void singASong(){...}
@@ -100,8 +100,8 @@ A utility class with only static methods will never be instantiated. Make sure i
 
 Example :
 ```java
-public class UtilityClass{
-	// Suppress default constructor for noninstantiability
+public class UtilityClass {
+	// Suppress default constructor for non-instantiability
 	private UtilityClass(){
 		throw new AssertionError();
 	}
@@ -111,7 +111,7 @@ public class UtilityClass{
 
 __Item 5 : Dependency Injection__
 
-A common mistake is the use of a singleton or a static utility class for a class that depends on underlying ressources.
+A common mistake is the use of a singleton or a static utility class for a class that depends on underlying resources.
 The use of dependency injection gives us more flexibility, testability and reusability
 
 Example : 
@@ -143,7 +143,7 @@ Example :
 In a stack implementation, the pop method could be implemented this way :
 
 ```java
-public pop(){
+public pop() {
 	if (size == 0) {
 		throw new EmptyStackException();
 	}
@@ -208,7 +208,7 @@ __Item 12 : toString__
 
 Override toString in every instantiable classes unless a superclass already did it.
 Most of the time it helps when debugging.
-It needs to be a full representation of the object and every informations contained in the toString representation should be accessible in some other way in order to avoid programmers to parse the String representation.
+It needs to be a full representation of the object and every information contained in the toString representation should be accessible in some other way in order to avoid programmers to parse the String representation.
 
 __Item 13 : clone__
 
@@ -280,7 +280,7 @@ public class InstrumentedSet<E> extends ForwardingSet<E> {
 	}
 
 	@Override
-	public boolean addAll (Collection< ? extends E> c){
+	public boolean addAll (Collection< ? extends E> c) {
 		addCount += c.size();
 		return super.addAll(c);
 	}
@@ -324,7 +324,7 @@ Doing both allows developers to use the one that will fit their needs.
 
 __Item 21 : Design interfaces for posterity__
 
-With Java 8, it's now possible to add new methods in interfaces without breaking old implemetations thanks to default methods.
+With Java 8, it's now possible to add new methods in interfaces without breaking old implementations thanks to default methods.
 Nonetheless, it needs to be done carefully since it can still break old implementations that will fail at runtime.
 
 __Item 22 : Interfaces are meant to define types__
@@ -359,11 +359,11 @@ Don't use them. Create a class hierarchy that will fit you needs better.
 __Item 24 : Nested classes__
 
 If a member class does not need access to its enclosing instance then declare it static.
-If the class is non static, each intance will have a reference to its enclosing instance. That can result in the enclosing instance not being garbage collected and memory leaks.
+If the class is non static, each instance will have a reference to its enclosing instance. That can result in the enclosing instance not being garbage collected and memory leaks.
 
 __Item 25 : One single top level class by file__
 
-Even thow it's possible to write multiple top level classes in a single file, don't !
+Even though it's possible to write multiple top level classes in a single file, don't !
 Doing so can result in multiple definition for a single class at compile time.
 
 ## Generics
@@ -374,7 +374,7 @@ A raw type is a generic type without its type parameter (Example : *List* is the
 Raw types shouldn't be used. They exist for compatibility with older versions of Java.
 We want to discover mistakes as soon as possible (compile time) and using raw types will probably result in error during runtime.
 We still need to use raw types in two cases : 
- - Usage of class litrals (List.class)
+ - Usage of class literals (List.class)
  - Usage of instanceof
  
 Examples :
@@ -386,7 +386,7 @@ stamps.add(new Coin(...)); //Erroneous insertion. Does not throw any error
 Stamp s = (Stamp) stamps.get(i); // Throws ClassCastException when getting the Coin
 
 //Common usage of instance of
-if (o instanceof Set){
+if (o instanceof Set) {
 	Set<?> = (Set<?>) o;
 }
 ```
@@ -394,7 +394,7 @@ if (o instanceof Set){
 __Item 27 : Unchecked warnings__
 
 Working with generics can often create warnings about them. Not having those warnings assure you that your code is typesafe.
-Try as hard as possible to eliminate them. Those warnings represents a potential ClassCastException at runtime.
+Try as hard as possible to eliminate them. Those warnings represent a potential ClassCastException at runtime.
 When you prove your code is safe but you can't remove this warning use the annotation @SuppressWarnings("unchecked") as close as possible to the declaration.
 Also, comment on why it is safe.
 
@@ -424,14 +424,14 @@ Examples :
 If we have a stack implementation and we want to add two methods pushAll and popAll, we should implement it this way :
 ```java
 //We want to push in everything that is E or inherits E
-public void pushAll(Iterable<? Extends E> src){
+public void pushAll(Iterable<? Extends E> src) {
 	for (E e : src) {
 		push(e);
 	}
 }
 
 //We want to pop out in any Collection that can welcome E
-public void popAll(Collection<? super E> dst){
+public void popAll(Collection<? super E> dst) {
 	while(!isEmpty()) {
 		dst.add(pop());
 	}
@@ -440,8 +440,8 @@ public void popAll(Collection<? super E> dst){
 
 __Item 32 : Generics and varargs__
 
-Even thow it's not legal to declare generic arrays explicitly, it's still possible to use varargs with generics.
-This inconsistency has been a choice because of its usefulness (Exemple : Arrays.asList(T... a)).
+Even though it's not legal to declare generic arrays explicitly, it's still possible to use varargs with generics.
+This inconsistency has been a choice because of its usefulness (Example : Arrays.asList(T... a)).
 This can, obviously, create problems regarding type safety. 
 To make a generic varargs method safe, be sure :
  - it doesn't store anything in the varargs array
@@ -453,16 +453,16 @@ __Item 33 : Typesafe heterogeneous container__
 Example : 
 
 ```java
-public class Favorites{
+public class Favorites {
 	private Map<Class<?>, Object> favorites = new HashMap<Class<?>, Object>();
 
-	public <T> void putFavorites(Class<T> type, T instance){
+	public <T> void putFavorites(Class<T> type, T instance) {
 		if(type == null)
 			throw new NullPointerException("Type is null");
 		favorites.put(type, type.cast(instance));//runtime safety with a dynamic cast
 	}
 
-	public <T> getFavorite(Class<T> type){
+	public <T> getFavorite(Class<T> type) {
 		return type.cast(favorites.get(type));
 	}
 }
@@ -484,7 +484,7 @@ Enums have an automatically generated valueOf(String) method that translates a c
 Example : 
 
 ```java
-public enum Operation{
+public enum Operation {
 	PLUS("+") { double apply(double x, double y){return x + y;}},
 	MINUS("-") { double apply(double x, double y){return x - y;}},
 	TIMES("*") { double apply(double x, double y){return x * y;}},
@@ -518,7 +518,7 @@ Example :
 
 ```java
 //Never do this !
-public enum Ensemble{
+public enum Ensemble {
 	SOLO, DUET, TRIO, QUARTET;
 	public int numberOfMusicians(){
 		return ordinal() + 1;
@@ -526,7 +526,7 @@ public enum Ensemble{
 }
 
 //Instead, do this : 
-public enum Ensemble{
+public enum Ensemble {
 	SOLO(1), DUET(2), TRIO(3), QUARTET(4);
 	
 	private final int numberOfMusicians;
@@ -535,7 +535,7 @@ public enum Ensemble{
 		this.numberOfMusicians = size;
 	}
 	
-	public int numberOfMusicians(){
+	public int numberOfMusicians() {
 		return numberOfMusicians;
 	}
 }
@@ -672,7 +672,7 @@ __Item 46 : Prefer side-effect-free functions in streams__
  
 Programming with stream pipelines should be side effect free. 
 The terminal forEach method should only be used to report the result of a computation not to perform the computation itself.
-In order to use  streams properly, you need to know about collectors. The most importants are toList, toSet, toMap, groupingBy and joining.
+In order to use  streams properly, you need to know about collectors. The most important are toList, toSet, toMap, groupingBy and joining.
 
 __Item 47 : Return collections instead of streams__
 
@@ -700,7 +700,7 @@ Example :
 
 ```java
 //This example is a good example but since java 8, we would use Instant instead of Date which is immutable
-public final class Period{
+public final class Period {
 	private final Date start;
 	private final Date end;
 	/**
@@ -765,7 +765,7 @@ public class CollectionClassifier {
 }
 ```
 
-As shown in the previous example overloading can be confusing. It is recommanded to never export two overloadings with the same number of parameters.
+As shown in the previous example overloading can be confusing. It is recommended to never export two overloadings with the same number of parameters.
 If you have to, consider giving different names to your methods. (writeInt, writeLong...)
 
 __Item 53 : Varargs__
@@ -774,8 +774,8 @@ Varargs are great when you need to define a method with a variable number of arg
 
 __Item 54 : Return empty collections or arrays instead of null__
 
-Returning null when you don't have elements to return makes the use of your methods more difficult. Your client will have to check if you object is not null.
-Instead always return an empty array or collection.
+Returning null when you don't have elements to return makes the use of your methods more difficult. Your client will have to check if your object is not null.
+Always return an empty array or collection instead.
 
 __Item 55 : Return of Optionals__
 
@@ -862,7 +862,7 @@ If there is no appropriate interface, use the least specific class that provides
 
 __Item 65 : Prefer interfaces to reflection__
 
-Reflextion is a powerful tool but has many disadvantages. 
+Reflection is a powerful tool but has many disadvantages. 
 When you need to work with classes unknown at compile time, try to only use it to instantiate object and then access them by using an interface of superclass known at compile time.
 
 __Item 66 : Native methods__
@@ -877,7 +877,7 @@ Measure performance before and after each attempted optimization.
 
 __Item 68 : Naming conventions__
 
-| Indentifier Type        |  Examples 								      |
+| Identifier Type        |  Examples 								      |
 |-------------------------|-----------------------------------------------|
 | Package                 | org.junit.jupiter, com.google.common.collect  |
 | Class or Interface      | Stream, FutureTask, LinkedHashMap, HttpServlet|
@@ -965,11 +965,11 @@ When multiple threads share mutable data, each of them that reads or writes this
 __Item 79 : Avoid excessive synchronization__
 
 As a rule, you should do as little work as possible inside synchronized regions.
-When designing a mutable class think about whether or not it should be synchronized.
+When designing a mutable class think about whether it should be synchronized.
 
 __Item 80 : Executors, tasks and streams__
 
-The java.util.concurrent package added a the executor framework. It contains class such as ExecutorService that can help you run Tasks in other threads.
+The java.util.concurrent package added an executor framework. It contains class such as ExecutorService that can help you run Tasks in other threads.
 You should refrain from using Threads and now using this framework in order to parallelize computation when needed.
 
 __Item 81 : Prefer concurrency  utilities to wait and notify__
@@ -980,7 +980,7 @@ Using wait and notify is quite difficult. You should then use the higher level c
  
 __Item 82 : Document thread safety__
 
-Every class should document its thread safety. When writing and unconditionnally thread safe class, consider using a private lock object instead of synchronized methods. This will give you more flexibility.
+Every class should document its thread safety. When writing and unconditionally thread safe class, consider using a private lock object instead of synchronized methods. This will give you more flexibility.
 
 Example : 
 
@@ -1030,7 +1030,7 @@ __Item 84 : Don't depend on the thread scheduler__
 The best way to write a robust and responsive program is to ensure that the average number of *runnable* threads is not significantly greater than the number of processors.
 Thread priorities are among the least portable features of Java.
 
-##Serialization
+## Serialization
 
 __Item 85 : Prefer alternatives to Java serialization__
 
